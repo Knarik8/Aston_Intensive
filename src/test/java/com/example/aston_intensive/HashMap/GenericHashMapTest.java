@@ -30,21 +30,30 @@ public class GenericHashMapTest {
         Assertions.assertEquals(70, result3);
         Assertions.assertNull(result4);
 
+        for (int i = 0; i< 1000000; i++){
+            genericHashMap.put("String"+ i, i);
+        }
+        Integer result5 = genericHashMap.get("String0");
+        Integer result6 = genericHashMap.get("String1300");
+        Assertions.assertEquals(0, result5);
+        Assertions.assertEquals(1300, result6);
+
+
+
     }
 
     @Test
     public void putTest() {
 
-        genericHashMap.put("First", 1);
-        genericHashMap.put("Second", 2);
-        genericHashMap.put("Third", 3);
+        for (int i = 0; i< 1000000; i++){
+            genericHashMap.put("String"+ i, i);
+        }
+        Assertions.assertEquals(7, genericHashMap.get("String7"));
+        Assertions.assertEquals(70, genericHashMap.get("String70"));
+        Assertions.assertEquals(70000, genericHashMap.get("String70000"));
 
-        Assertions.assertEquals(1, genericHashMap.get("First"));
-        Assertions.assertEquals(2, genericHashMap.get("Second"));
-        Assertions.assertEquals(3, genericHashMap.get("Third"));
-
-        genericHashMap.put("Second", 2222); //update value
-        Assertions.assertEquals(2222, genericHashMap.get("Second"));
+        genericHashMap.put("String2", 2222); //update value
+        Assertions.assertEquals(2222, genericHashMap.get("String2"));
 
     }
 
@@ -68,6 +77,15 @@ public class GenericHashMapTest {
         genericHashMap.extend();
         Integer result = genericHashMap.getArray().length;
         Assertions.assertEquals(32, result);
+
+
+        for (int i = 0; i< 100; i++){
+            genericHashMap.put("String"+ i, i);
+        }
+
+        genericHashMap.extend();
+        Integer result1 = genericHashMap.getArray().length;
+        Assertions.assertEquals(128, result1);
     }
 
 

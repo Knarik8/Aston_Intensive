@@ -110,12 +110,9 @@ public class GenericHashMap<K, V> {
             if (array[i] != null) {
                 Pair<K, V> tempPair = array[i];
                 newGenericMap.put(tempPair.getKey(), tempPair.getValue());
-                while (tempPair.getNextPair() != null) {
-                    newGenericMap.put(tempPair.getNextPair().getKey(), tempPair.getNextPair().getValue());
-                    tempPair = tempPair.getNextPair();
-                }
             }
-            this.array = newGenericMap.array;
         }
+        this.array = newGenericMap.array;
+
     }
 }
